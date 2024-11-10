@@ -66,7 +66,9 @@ $layout-max-width: 1200px !default;
 $tablet-width: 992px !default;
 $small-tablet-width: 768px !default;
 $mobile-width: 576px !default;
-$mini-mobile-width: 357px !default;
+$small-mobile-width: 357px !default;
+// ----------------layout----------------
+$tablet-padding-x: 16px;
 // ----------------spacing----------------
 $spacing: (
     "none": 0,

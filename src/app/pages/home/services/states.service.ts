@@ -1,15 +1,22 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { Task } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatesService {
-  lastAddedId = 1;
-
   private statusFilter = signal<string | null>(null);
 
-  private taskItems = signal<Task[]>([]);
+  private taskItems = signal<Task[]>(JSON.parse(localStorage.getItem('glo3d-tasks') || '[]'));
+  
+  maxId = computed(() => {
+    const tasks = this.taskItems();
+    return tasks.length > 0 ? (Math.max(...tasks.map(task => task.id)) + 1) : 1;
+  });
+
+  syncStorage = effect(() => {
+    localStorage.setItem('glo3d-tasks', JSON.stringify(this.taskItems()));
+  });
 
   getTaskItems() {
     return this.taskItems.asReadonly();
@@ -24,7 +31,6 @@ export class StatesService {
   }
 
   addItem(task: Task) {
-    this.lastAddedId = this.lastAddedId + 1;
     this.taskItems.update(items => [...items, task]);
   }
 

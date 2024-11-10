@@ -1,7 +1,18 @@
+@use "../../../../../theme/core/environments" as env;
+@use "../../../../../theme/core/breakpoints" as brk;
+
 :host {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-wrap: wrap;
     gap: 32px;
     margin-bottom: 36px;
+    white-space: nowrap;
+}
+
+@include brk.smallTablet {
+    :host {
+        gap: 16px;
+    }
 }

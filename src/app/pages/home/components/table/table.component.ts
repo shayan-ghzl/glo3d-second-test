@@ -54,7 +54,7 @@ export class TableComponent implements OnDestroy {
       takeUntil(this.unsubscribeAll$),
     ).subscribe(result => {
       if (result) {
-        this.openSnackBar(`${result} has been successfully added`);
+        this.openSnackBar(`${result} has been successfully edited`);
       }
     });
   }

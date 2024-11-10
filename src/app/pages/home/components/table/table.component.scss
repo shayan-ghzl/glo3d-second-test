@@ -1,5 +1,11 @@
 @use "../../../../../theme/core/environments/environments" as env;
 
+.table-responsive {
+    overflow-x: auto;
+}
+table {
+    white-space: nowrap;
+}
 .table-loading {
     font-size: 16px;
     font-weight: 500;

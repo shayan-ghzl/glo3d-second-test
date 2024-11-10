@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import moment, { Moment } from 'moment';
 import { Task, TaskStatus } from '../../models/models';
 import { StatesService } from '../../services/states.service';
 
@@ -37,7 +38,7 @@ export class AddDialogComponent {
   formGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
     status: new FormControl('', [Validators.required]),
-    dueDate: new FormControl('', [Validators.required]),
+    dueDate: new FormControl<Moment | null>(null, [Validators.required]),
   });
 
   private _loading = false;
@@ -61,7 +62,7 @@ export class AddDialogComponent {
   ) {
     if (this.data) {
       const { title, status, dueDate } = this.data;
-      this.formGroup.setValue({ title, status, dueDate });
+      this.formGroup.setValue({ title, status, dueDate: moment(dueDate) });
     }
   }
 
@@ -71,14 +72,14 @@ export class AddDialogComponent {
     }
     this.loading = true;
 
-    const value = this.formGroup.value as { title: string; status: 'Pending' | 'Progress' | 'Completed'; dueDate: string; };
+    const value = this.formGroup.value as { title: string; status: 'Pending' | 'Progress' | 'Completed'; dueDate: Moment; };
 
     this.ngZone.run(() => {
       setTimeout(() => {
         if (this.data) {
-          this.statesService.editItem({ ...value, id: this.data.id });
+          this.statesService.editItem({ ...value, dueDate: value.dueDate.format('YYYY-MM-DD'), id: this.data.id });
         } else {
-          this.statesService.addItem({ ...value, id: this.statesService.lastAddedId });
+          this.statesService.addItem({ ...value, dueDate: value.dueDate.format('YYYY-MM-DD'), id: this.statesService.maxId() });
         }
         _closeDialogVia(this.dialogRef, 'mouse', value.title);
       }, 1000);
