@@ -1,0 +1,12 @@
+<button mat-flat-button color="primary" (click)="openDialog()">Add New Item</button>
+
+<!-- Status Field -->
+<mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Status Filter</mat-label>
+    <mat-select (valueChange)="setFilter($event)">
+        <mat-option [value]="null">Clear Filter</mat-option>
+        @for (taskStatus of taskStatusTypes; track $index) {
+        <mat-option [value]="taskStatus">{{taskStatus}}</mat-option>
+        }
+    </mat-select>
+</mat-form-field>

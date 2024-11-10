@@ -1,0 +1,9 @@
+@use "../../../../../theme/core/environments/environments" as env;
+
+.table-loading {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px;
+    text-align: center;
+    color: env.$bs-red;
+}

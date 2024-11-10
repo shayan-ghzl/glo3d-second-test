@@ -1,0 +1,76 @@
+@use "../mixins";
+
+$primary-color: #013747 !default;
+$primary-color-rgb: mixins.to-rgb($primary-color) !default;
+
+$accent-color: #dc961a !default;
+$accent-color-rgb: mixins.to-rgb($accent-color) !default;
+
+// ----------------colors----------------
+$bs-blue: #0d6efd !default;
+$bs-blue-rgb: mixins.to-rgb($bs-blue) !default;
+
+$bs-indigo: #6610f2 !default;
+$bs-indigo-rgb: mixins.to-rgb($bs-indigo) !default;
+
+$bs-purple: #6f42c1 !default;
+$bs-purple-rgb: mixins.to-rgb($bs-purple) !default;
+
+$bs-pink: #d63384 !default;
+$bs-pink-rgb: mixins.to-rgb($bs-pink) !default;
+
+$bs-red: #dc3545 !default;
+$bs-red-rgb: mixins.to-rgb($bs-red) !default;
+
+$bs-orange: #fd7e14 !default;
+$bs-orange-rgb: mixins.to-rgb($bs-orange) !default;
+
+$bs-yellow-dep: #ffc107 !default;
+$bs-yellow-dep-rgb: mixins.to-rgb($bs-yellow-dep) !default;
+
+$bs-yellow: #dda600 !default;
+$bs-yellow-rgb: mixins.to-rgb($bs-yellow) !default;
+
+$bs-green: #198754 !default;
+$bs-green-rgb: mixins.to-rgb($bs-green) !default;
+
+$bs-teal: #20c997 !default;
+$bs-teal-rgb: mixins.to-rgb($bs-teal) !default;
+
+$bs-cyan: #0dcaf0 !default;
+$bs-cyan-rgb: mixins.to-rgb($bs-cyan) !default;
+// ----------------body----------------
+$body-font-family: "Roboto", Roboto, "tahoma", tahoma !default;
+$body-bg: #fff !default;
+$text-color: #222 !default;
+$text-align: right !default;
+// ----------------heading----------------
+$heading-font-family: "Roboto", Roboto, "tahoma", tahoma !default;
+$heading-1-font-size: 32px !default;
+$heading-2-font-size: 30px !default;
+$heading-3-font-size: 28px !default;
+$heading-4-font-size: 24px !default;
+$heading-5-font-size: 20px !default;
+$heading-6-font-size: 16px !default;
+// ----------------anchor----------------
+$link-color: $primary-color !default;
+$link-hover-color: $primary-color !default;
+// ----------------borders----------------
+$border-color: #36475a !default;
+$border-radius: 8px !default;
+// ----------------autofill----------------
+$autofill-color: #484848 !default;
+$autofill-disabled-color: #c9c9c9 !default;
+// ----------------breakpoints----------------
+$layout-max-width: 1200px !default;
+$tablet-width: 992px !default;
+$small-tablet-width: 768px !default;
+$mobile-width: 576px !default;
+$mini-mobile-width: 357px !default;
+// ----------------spacing----------------
+$spacing: (
+    "none": 0,
+    "small": 8px,
+    "standard": 16px,
+    "medium": 24px,
+    "double": 32px) !default;

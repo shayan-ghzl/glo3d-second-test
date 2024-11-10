@@ -1,0 +1,47 @@
+<div mat-dialog-title>
+    <h1>{{(data) ? ('Edit ' + data && data.title) : 'Add New Task'}}</h1>
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon aria-hidden="false" aria-label="close icon" fontIcon="close"></mat-icon>
+    </button>
+</div>
+
+<mat-dialog-content>
+    <form [formGroup]="formGroup">
+        <div class="grid-container">
+
+            <!-- Title Field -->
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                <mat-label>title</mat-label>
+                <input matInput formControlName="title" type="text">
+            </mat-form-field>
+
+            <!-- Status Field -->
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    @for (taskStatus of taskStatusTypes; track $index) {
+                    <mat-option [value]="taskStatus">{{taskStatus}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Due Date Field -->
+            <mat-form-field appearance="outline" subscriptSizing="dynamic" (click)="fromPicker.open()">
+                <mat-label>Due Date</mat-label>
+                <input readonly matInput formControlName="dueDate" [matDatepicker]="fromPicker" [min]="minDate" [max]="maxDate">
+                <mat-datepicker #fromPicker startView="multi-year" [startAt]="startDate" />
+            </mat-form-field>
+
+        </div>
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions align="center">
+    <button type="button" mat-stroked-button color="primary" mat-dialog-close>Not Sure</button>
+    <button type="button" mat-flat-button color="primary" [disabled]="formGroup.invalid || formGroup.pristine || loading" (click)="addOrEdit()">
+        {{(data) ? 'Edit' : 'Add'}}
+        @if (loading) {
+        <mat-spinner matButtonIcon iconPositionEnd [diameter]="18" color="primary" />
+        }
+    </button>
+</div>
